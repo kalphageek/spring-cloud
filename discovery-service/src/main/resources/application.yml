@@ -1,0 +1,13 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    response-cache-update-interval-ms: 3000 #유레카 서버의 캐쉬 업데이트 주기 조정옵션

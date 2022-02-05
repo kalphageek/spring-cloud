@@ -1,0 +1,75 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-register: true
+    service-url:
+      defaultZone: http://192.168.0.2:8761/eureka
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: JJD Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/login -> /users로 변환해준다.
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/users -> /users로 변환해준다.
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/health_check -> /health_check로 변환해준다.
+        - id: first-service
+          uri: lb://MY-FIRST-SERVICE
+          predicates:
+            - Path=/first-service/**
+          filters:
+            - CustomFilter
+#            - AddRequestHeader=first-request, first-service-request-yaml
+#            - AddResponseHeader=first-response, first-service-response-yaml
+        - id: second-service
+          uri: lb://MY-SECOND-SERVICE
+          predicates:
+            - Path=/second-service/**
+          filters:
+            - name: CustomFilter
+            - name: LoggingFilter
+              args:
+                baseMessage: Hi, this is logging filter
+                preLogger: true
+                postLogger: true
+#            - AddRequestHeader=second-request, second-service-request-yaml
+#            - AddResponseHeader=second-response, second-service-response-yaml
