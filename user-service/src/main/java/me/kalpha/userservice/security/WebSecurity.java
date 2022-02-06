@@ -18,6 +18,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder passwordEncoder;
     private Environment env;
 
+    /**
+     * @Configuration에 의해 자동으로 Autowired 된다.
+     * @param userService
+     * @param passwordEncoder
+     * @param env
+     */
     public WebSecurity (UserService userService, BCryptPasswordEncoder passwordEncoder, Environment env) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
@@ -50,6 +56,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 
+    /**
+     * authenticationManager() 는 super의 메소드이다.
+     * @return
+     * @throws Exception
+     */
     private AuthenticationFilter getAuthenticationFilter() throws Exception {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager(), userService, env);
 //        authenticationFilter.setAuthenticationManager(authenticationManager());

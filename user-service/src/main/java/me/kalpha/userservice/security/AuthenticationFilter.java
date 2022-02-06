@@ -1,6 +1,8 @@
 package me.kalpha.userservice.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import me.kalpha.userservice.dto.UserDto;
 import me.kalpha.userservice.service.UserService;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -77,7 +80,16 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         // UserDetails 받아오기
-        User user = (User)authResult.getPrincipal();
+        User user = (User) authResult.getPrincipal();
         UserDto userDto = userService.getUserByEmail(user.getUsername());
+
+        String token = Jwts.builder()
+                .setSubject(user.getUsername())
+                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(env.getProperty("token.expiration_time"))))
+                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
+                .compact();
+
+        response.addHeader("token", token);
+        response.addHeader("userId", userDto.getUserId());
     }
 }

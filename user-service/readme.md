@@ -1,5 +1,5 @@
 ## Eureka 설정
-> Server와 Client의 설정이 함께  조정해야 한다
+> Server와 Client의 설정을 함께  조정해야 한다
 1. 유레카 서버의 캐쉬 업데이트 주기 조정옵션 (Server에 설정)
 ```yml
 eureka:
@@ -22,7 +22,7 @@ eureka:
 			<version>1.3.176</version>
 		</dependency>
 ```
-1. Spring Cloud 버전 이슈로 Java 버전을 조정한다.
+1. Spring Cloud 버전(2.4.2) 이슈로 Java 버전을 조정한다.
 ```xml
 	<properties>
 		<java.version>11</java.version>
@@ -61,7 +61,7 @@ spring:
   2. AuthenticationFilter.attemptAuthentication 호출
      ( RequestLogin -> UsernamePasswordAuthenticationToken으로 변환 )
   3. UserService(UserDetailService).loadUserByUserName 호출
-     ( UserEntity -> User로 변황 )
+     ( UserEntity -> User로 변환 )
   4. AuthenticationFilter.successfulAuthentication 호출
      (User 참조)
 
