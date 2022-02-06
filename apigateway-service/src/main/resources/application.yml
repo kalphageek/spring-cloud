@@ -8,6 +8,9 @@ eureka:
     service-url:
       defaultZone: http://192.168.0.2:8761/eureka
 
+token:
+  secret: user_token
+
 spring:
   application:
     name: apigateway-service
@@ -44,6 +47,15 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
             - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/users -> /users로 변환해준다.
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/users
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/health_check -> /health_check로 변환해준다.
+            - AuthorizationHeaderFilter
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
