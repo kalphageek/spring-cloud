@@ -22,11 +22,11 @@ eureka:
 			<version>1.3.176</version>
 		</dependency>
 ```
-1. Spring Cloud 버전(2.4.2) 이슈로 Java 버전을 조정한다.
+1. Parent와 Dependency 맞추기 위해 Spring Cloud 버전2020.0.1로 변경한다.
 ```xml
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>2020.0.5</spring-cloud.version>
+		<spring-cloud.version>2020.0.1</spring-cloud.version>
 	</properties>
 ```
 ## Annotation 설명
