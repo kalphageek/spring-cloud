@@ -14,11 +14,11 @@ $cd /c:/workspace/spring-learning/git-local-repo
 $git init
 $vi ecommerce.yml
   token:
-  expiration_time: 864000000
-  secret: user_token
+    expiration_time: 864000000
+    secret: user_token
 
   gateway:
-  ip: 192.168.0.2
+    ip: 192.168.0.2
   >wq
 $git add ecommerce.yml
 $git commit -m ""upload default application yaml file" 

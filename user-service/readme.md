@@ -54,7 +54,6 @@ spring:
   jpa:
     generate-ddl: true
 ```
-
 ## Spring Security
 * Login 순서
   1. /login 호출 
@@ -74,4 +73,52 @@ spring:
 ```
 ```html
 http://localhost:8082/login
+```
+## Spring Cloud Config 추가
+1. Dependency 추가
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
+```
+2. bootstrap.yml 추가
+> applicaiton.yml보다 먼저 loading된다.
+```yaml
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      name: ecommerce
+```
+> config-service의 application.yml에 등록된 "http://127.0.0.1:8888/ecommerce/default"에 등록된 정보를 읽어온다.<br>
+> 이는 결국 git-local-rep/ecommerce.yml 읽게 된다.
+3. git-local-rep/ecommerce.yml 변경 후 재 적용 방법
+    1. user-service 재기동
+    2. Actuator refresh
+    3. Spring cloud bus
+## git-local-rep/ecommerce.yml 변경 후 재 적용 (Actuator refresh)
+1. Dependency 추가
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-actuator</artifactId>
+		</dependency>
+```
+2. Actuator endpoints API 추가
+> application.yml에 추가
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+```
+3. Actuator refresh API 호출
+```
+[POST] http://localhost:8082/actuator/refesh
 ```
