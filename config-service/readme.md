@@ -24,6 +24,27 @@ $git add ecommerce.yml
 $git commit -m ""upload default application yaml file" 
 ```
 ## Spring Config에서 Git Local Repository 접근
+```yaml
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///home/jjd/workspace/spring-learning/git-local-repo
+# Windows format         
+#          uri: file:///c:/workspace/spring-learning/git-local-repo
+```
 > http://localhost:8888/ecommerce/default
 * ecommerce -> ecommerce.yml
 * default -> default profile
+## Spring Config에서 Git Private Repository 접근
+```yaml
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:kalphageek/spring-cloud-config.git
+          username: [username]
+          password: [password]
+```

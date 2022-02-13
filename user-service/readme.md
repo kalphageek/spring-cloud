@@ -12,6 +12,13 @@ eureka:
   client:
     registry-fetch-interval-seconds: 30    
 ```
+## Eureka Client의 Hostname in Window
+> Windows에서 localhost를 사용하면 PC명 형태의 도메인명이 나오는 경우가 있다. 이름 127.0.0.1로 변경해준다
+```yaml
+eureka:  
+  instance:
+    hostname: localhost
+```
 ## 버전특성 조정
 1. H2는 1.4 에서는 자동으로 DB가 생성안된다. Test용이라 1.3을 그냥 사용한다.
 ```xml

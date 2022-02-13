@@ -8,4 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: file:///home/jjd/workspace/spring-learning/git-local-repo
+#          uri: file:///home/jjd/workspace/spring-learning/git-local-repo
+          uri: git@github.com:kalphageek/spring-cloud-config.git

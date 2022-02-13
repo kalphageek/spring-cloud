@@ -3,3 +3,6 @@ spring:
     config:
       uri: http://127.0.0.1:8888
       name: ecommerce
+  # ecommerce-prod.yml를 읽는다
+  profiles:
+    active: dev
