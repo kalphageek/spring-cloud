@@ -27,9 +27,15 @@ logging:
   level:
     me.kalpha.userservice: DEBUG
 
-token:
-  expiration_time: 864000000 #10 days
-  secret: user_token
+#token:
+#  expiration_time: 864000000 #10 days
+#  secret: user_token
 
 greeting:
   message: "Welcome to simple e-commerce !"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

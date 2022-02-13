@@ -16,17 +16,17 @@ eureka:
 1. H2는 1.4 에서는 자동으로 DB가 생성안된다. Test용이라 1.3을 그냥 사용한다.
 ```xml
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-			<version>1.3.176</version>
-		</dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+    <version>1.3.176</version>
+</dependency>
 ```
-1. Spring Cloud 버전(2.4.2) 이슈로 Java 버전을 조정한다.
+1. Parent와 Dependency 맞추기 위해 Spring Cloud 버전2020.0.1로 변경한다.
 ```xml
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>2020.0.5</spring-cloud.version>
+		<spring-cloud.version>2020.0.1</spring-cloud.version>
 	</properties>
 ```
 ## Annotation 설명
@@ -54,16 +54,15 @@ spring:
   jpa:
     generate-ddl: true
 ```
-
 ## Spring Security
 * Login 순서
-  1. /login 호출 
-  2. AuthenticationFilter.attemptAuthentication 호출
-     ( RequestLogin -> UsernamePasswordAuthenticationToken으로 변환 )
-  3. UserService(UserDetailService).loadUserByUserName 호출
-     ( UserEntity -> User로 변환 )
-  4. AuthenticationFilter.successfulAuthentication 호출
-     (User 참조)
+    1. /login 호출
+    2. AuthenticationFilter.attemptAuthentication 호출
+       ( RequestLogin -> UsernamePasswordAuthenticationToken으로 변환 )
+    3. UserService(UserDetailService).loadUserByUserName 호출
+       ( UserEntity -> User로 변환 )
+    4. AuthenticationFilter.successfulAuthentication 호출
+       (User 참조)
 
 1. Spring Security를 Import하면 자동으로 Login 엔드포인트를 제공한다
 ```xml
@@ -74,4 +73,52 @@ spring:
 ```
 ```html
 http://localhost:8082/login
+```
+## Spring Cloud Config 추가
+1. Dependency 추가
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
+```
+2. bootstrap.yml 추가
+> applicaiton.yml보다 먼저 loading된다.
+```yaml
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      name: ecommerce
+```
+> config-service의 application.yml에 등록된 "http://127.0.0.1:8888/ecommerce/default"에 등록된 정보를 읽어온다.<br>
+> 이는 결국 git-local-rep/ecommerce.yml 읽게 된다.
+3. git-local-rep/ecommerce.yml 변경 후 재 적용 방법
+    1. user-service 재기동
+    2. Actuator refresh
+    3. Spring cloud bus
+## git-local-rep/ecommerce.yml 변경 후 재 적용 (Actuator refresh)
+1. Dependency 추가
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-actuator</artifactId>
+		</dependency>
+```
+2. Actuator endpoints API 추가
+> application.yml에 추가
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+```
+3. Actuator refresh API 호출
+```
+[POST] http://localhost:8082/actuator/refesh
 ```
