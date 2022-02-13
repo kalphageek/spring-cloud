@@ -5,4 +5,4 @@ spring:
       name: ecommerce
   # ecommerce-prod.yml를 읽는다
   profiles:
-    active: prod
+    active: dev
