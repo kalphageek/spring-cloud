@@ -6,10 +6,7 @@ eureka:
     register-with-eureka: true
     fetch-register: true
     service-url:
-      defaultZone: http://192.168.0.2:8761/eureka
-
-token:
-  secret: user_token
+      defaultZone: http://192.168.0.36:8761/eureka
 
 spring:
   application:
@@ -50,7 +47,7 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/users
+            - Path=/user-service/**
             - Method=GET
           filters:
             - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
@@ -59,11 +56,11 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/**
-            - Method=GET
+            - Path=/user-service/actuator/**
+            - Method=GET, POST
           filters:
             - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/health_check -> /health_check로 변환해준다.
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/actuator -> /actuator로 변환해준다.
         - id: first-service
           uri: lb://MY-FIRST-SERVICE
           predicates:
@@ -85,3 +82,12 @@ spring:
                 postLogger: true
 #            - AddRequestHeader=second-request, second-service-request-yaml
 #            - AddResponseHeader=second-response, second-service-response-yaml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
+
+token:
+  secret: user_token

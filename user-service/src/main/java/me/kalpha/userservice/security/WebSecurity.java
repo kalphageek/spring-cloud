@@ -49,7 +49,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
         http.authorizeRequests().antMatchers("/**")
-                .hasIpAddress("192.168.0.2")
+                .hasIpAddress("192.168.0.36")
                 .and()
                 .addFilter(getAuthenticationFilter()); // 모든 요청에 대해 필터작업 요청
 

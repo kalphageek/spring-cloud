@@ -12,15 +12,22 @@ eureka:
   client:
     registry-fetch-interval-seconds: 30    
 ```
+## Eureka Client의 Hostname in Window
+> Windows에서 localhost를 사용하면 PC명 형태의 도메인명이 나오는 경우가 있다. 이름 127.0.0.1로 변경해준다
+```yaml
+eureka:  
+  instance:
+    hostname: localhost
+```
 ## 버전특성 조정
 1. H2는 1.4 에서는 자동으로 DB가 생성안된다. Test용이라 1.3을 그냥 사용한다.
 ```xml
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-			<version>1.3.176</version>
-		</dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+    <version>1.3.176</version>
+</dependency>
 ```
 1. Parent와 Dependency 맞추기 위해 Spring Cloud 버전2020.0.1로 변경한다.
 ```xml
@@ -56,13 +63,13 @@ spring:
 ```
 ## Spring Security
 * Login 순서
-  1. /login 호출 
-  2. AuthenticationFilter.attemptAuthentication 호출
-     ( RequestLogin -> UsernamePasswordAuthenticationToken으로 변환 )
-  3. UserService(UserDetailService).loadUserByUserName 호출
-     ( UserEntity -> User로 변환 )
-  4. AuthenticationFilter.successfulAuthentication 호출
-     (User 참조)
+    1. /login 호출
+    2. AuthenticationFilter.attemptAuthentication 호출
+       ( RequestLogin -> UsernamePasswordAuthenticationToken으로 변환 )
+    3. UserService(UserDetailService).loadUserByUserName 호출
+       ( UserEntity -> User로 변환 )
+    4. AuthenticationFilter.successfulAuthentication 호출
+       (User 참조)
 
 1. Spring Security를 Import하면 자동으로 Login 엔드포인트를 제공한다
 ```xml
