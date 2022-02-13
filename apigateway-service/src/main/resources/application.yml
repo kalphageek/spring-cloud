@@ -6,7 +6,7 @@ eureka:
     register-with-eureka: true
     fetch-register: true
     service-url:
-      defaultZone: http://192.168.0.2:8761/eureka
+      defaultZone: http://192.168.0.36:8761/eureka
 
 token:
   secret: user_token
