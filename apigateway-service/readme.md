@@ -23,3 +23,35 @@
    1. /login에서 생성된 token을 복사
    2. headers의 Authorization > Bearer Token 에 복사한 token을 붙여넣는다.
    3. Request를 send한다.
+
+## HttpTrace 설정
+1. application.yml 추가
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
+```
+2. Bean 등록
+```java
+ @Bean
+ public HttpTraceRepository httpTraceRepository() {
+     return new InMemoryHttpTraceRepository();
+ }
+```
+4. Route 등록
+```yaml
+ - id: user-service
+   uri: lb://USER-SERVICE
+   predicates:
+     - Path=/user-service/actuator/**
+     - Method=GET, POST
+   filters:
+     - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+     - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/actuator -> /actuator로 변환해준다.
+```
+5. 호출
+```
+http://localhost:8000/user-service/actuator/httptrace
+```
