@@ -1,5 +1,8 @@
 spring:
   cloud:
     config:
-      uri: http://127.0.0.1:8888
-      name: ecommerce
+      uri: http://127.0.0.1:8088
+      name: config-servier   # Application Name명시 -> application.yml을 부른다는 의미
+#      name: ecommerce
+#  profiles:
+#    active: dev

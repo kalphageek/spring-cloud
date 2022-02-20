@@ -61,3 +61,25 @@ management:
 ```
 http://localhost:8000/user-service/actuator/httptrace
 ```
+## Bus Repfresh 설정
+1. application.yml 추가
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh
+```
+2. Rabbitmq 등록
+```yaml
+spring:
+   rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: guest
+      password: guest
+```
+3. 호출
+```
+http://localhost:8000/actuator/busrefresh
+```
