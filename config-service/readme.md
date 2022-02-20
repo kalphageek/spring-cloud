@@ -30,9 +30,9 @@ spring:
     config:
       server:
         git:
-          uri: file:///home/jjd/workspace/spring-learning/git-local-repo
+          uri: file://${user.home}/workspace/spring-learning/git-local-repo
 # Windows format         
-#          uri: file:///c:/workspace/spring-learning/git-local-repo
+#          uri: file:///${user.home}/workspace/spring-learning/native-local-repo
 ```
 > http://localhost:8888/ecommerce/default
 * ecommerce -> ecommerce.yml
