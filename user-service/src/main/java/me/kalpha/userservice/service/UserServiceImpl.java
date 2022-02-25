@@ -6,11 +6,16 @@ import me.kalpha.userservice.jpa.UserRepository;
 import me.kalpha.userservice.vo.ResponseOrder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +27,19 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
     private ModelMapper mapper;
+    private Environment env;
+    private RestTemplate restTemplate;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper mapper) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper mapper, Environment env, RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mapper = mapper;
+        this.env = env;
+        this.restTemplate = restTemplate;
     }
+
+
 
     @Override
     public UserDto createUser(UserDto userDto) {
@@ -51,9 +62,15 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User not found : " + userId);
         }
         UserDto userDto = mapper.map(userEntity, UserDto.class);
-        List<ResponseOrder> orders = new ArrayList();
 
-        userDto.setOrders(orders);
+        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
+        ResponseEntity<List<ResponseOrder>> orderListResponse =
+                restTemplate.exchange(orderUrl, HttpMethod.GET, null,
+                                    new ParameterizedTypeReference<List<ResponseOrder>>() {
+                });
+        List<ResponseOrder> orderList = orderListResponse.getBody();
+
+        userDto.setOrders(orderList);
         return userDto;
     }
 

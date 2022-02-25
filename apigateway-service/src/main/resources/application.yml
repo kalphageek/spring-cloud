@@ -15,8 +15,8 @@ spring:
   rabbitmq:
     host: 127.0.0.1
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: admin
   cloud:
     gateway:
       default-filters:
@@ -95,5 +95,5 @@ management:
       exposure:
         include: refresh, health, beans, httptrace, busrefresh
 
-token:
-  secret: user_token
+#token:
+#  secret: user_token

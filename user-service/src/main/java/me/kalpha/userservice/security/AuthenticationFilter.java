@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.kalpha.userservice.dto.UserDto;
 import me.kalpha.userservice.service.UserService;
 import me.kalpha.userservice.vo.RequestLogin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

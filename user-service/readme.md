@@ -129,3 +129,38 @@ management:
 ```
 [POST] http://localhost:8082/actuator/refesh
 ```
+## 대칭키를 이용한 암호화
+1. Git Local Repository에 추가
+> '{cipher}...' 는 암화화된 텍스트로 식해서 bootstrap.yml에 등록된 http://localhost:8088/decrypt API를 통해 복호화한다.
+* user-service.yml
+```yaml
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: '{cipher}38e40f741d0d517c386a29bcd575bac6394a2a4eb4983b9292c770b147a30e92'
+```
+2. Spring Config Service의 Profile 정보 확인
+```html
+http://localhost:8088/user-service/default
+```
+## IP -> Service Name 변경
+1. UserServiceApplication.java
+```java
+@Bean
+@LoadBalanced  #<--추가
+public RestTemplate getRestTemplate() {
+    return new RestTemplate();
+}
+```
+2native-local-repo/user-service.yml
+```yaml
+order-service:
+  # url: http://127.0.0.1:8000/order-service/%s/orders
+  url: http://ORDER-SERVICE/order-service/%s/orders
+```
+3. busrefresh
+```
+http://127.0.0.1:8000/actuatory/busrefresh
+```
