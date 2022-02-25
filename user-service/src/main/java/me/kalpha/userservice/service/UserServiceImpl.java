@@ -1,21 +1,18 @@
 package me.kalpha.userservice.service;
 
+import me.kalpha.userservice.client.OrderServiceClient;
 import me.kalpha.userservice.dto.UserDto;
 import me.kalpha.userservice.jpa.UserEntity;
 import me.kalpha.userservice.jpa.UserRepository;
 import me.kalpha.userservice.vo.ResponseOrder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +25,22 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
     private ModelMapper mapper;
     private Environment env;
-    private RestTemplate restTemplate;
+//    private RestTemplate restTemplate;
+    private OrderServiceClient orderServiceClient;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, ModelMapper mapper, Environment env, RestTemplate restTemplate) {
+    public UserServiceImpl(UserRepository userRepository
+            , BCryptPasswordEncoder passwordEncoder
+            , ModelMapper mapper
+            , Environment env
+//            , RestTemplate restTemplate
+            , OrderServiceClient orderServiceClient) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mapper = mapper;
         this.env = env;
-        this.restTemplate = restTemplate;
+//        this.restTemplate = restTemplate;
+        this.orderServiceClient = orderServiceClient;
     }
 
 
@@ -63,12 +67,16 @@ public class UserServiceImpl implements UserService {
         }
         UserDto userDto = mapper.map(userEntity, UserDto.class);
 
-        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
-        ResponseEntity<List<ResponseOrder>> orderListResponse =
-                restTemplate.exchange(orderUrl, HttpMethod.GET, null,
-                                    new ParameterizedTypeReference<List<ResponseOrder>>() {
-                });
-        List<ResponseOrder> orderList = orderListResponse.getBody();
+        /* Using a Resttemplate */
+//        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
+//        ResponseEntity<List<ResponseOrder>> orderListResponse =
+//                restTemplate.exchange(orderUrl, HttpMethod.GET, null,
+//                                    new ParameterizedTypeReference<List<ResponseOrder>>() {
+//                });
+//        List<ResponseOrder> orderList = orderListResponse.getBody();
+
+        /* Using a FeignClient */
+        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
 
         userDto.setOrders(orderList);
         return userDto;
