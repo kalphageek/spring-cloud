@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="" />
+    <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/security/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/security/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/vo/ResponseUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/vo/ResponseUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/UserServiceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/UserServiceApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +83,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../apigateway-service" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -132,10 +142,20 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="env.getProperty(&quot;token.expiration_time&quot;)" language="JAVA" />
         <watch expression="env.getProperty(&quot;token.secret&quot;)" language="JAVA" />
+        <watch expression="env.getProperty(&quot;order-service.url&quot;)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

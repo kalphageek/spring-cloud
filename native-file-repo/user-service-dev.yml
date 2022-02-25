@@ -1,6 +1,0 @@
-token:
-    expiration_time: 864000000
-    secret: user_token_native_user_service_dev
-
-gateway:
-  ip: 127.0.0.1

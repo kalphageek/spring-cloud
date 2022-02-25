@@ -145,3 +145,22 @@ spring:
 ```html
 http://localhost:8088/user-service/default
 ```
+## IP -> Service Name 변경
+1. UserServiceApplication.java
+```java
+@Bean
+@LoadBalanced  #<--추가
+public RestTemplate getRestTemplate() {
+    return new RestTemplate();
+}
+```
+2native-local-repo/user-service.yml
+```yaml
+order-service:
+  # url: http://127.0.0.1:8000/order-service/%s/orders
+  url: http://ORDER-SERVICE/order-service/%s/orders
+```
+3. busrefresh
+```
+http://127.0.0.1:8000/actuatory/busrefresh
+```
