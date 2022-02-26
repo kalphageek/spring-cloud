@@ -1,5 +1,6 @@
 package me.kalpha.userservice;
 
+import feign.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -32,4 +33,8 @@ public class UserServiceApplication {
 //	public RestTemplate getRestTemplate() {
 //		return new RestTemplate();
 //	}
+	@Bean
+	public Logger.Level getFeignLoggerrLevel() {
+		return Logger.Level.FULL;
+	}
 }

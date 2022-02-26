@@ -1,5 +1,7 @@
 package me.kalpha.userservice.service;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
 import me.kalpha.userservice.client.OrderServiceClient;
 import me.kalpha.userservice.dto.UserDto;
 import me.kalpha.userservice.jpa.UserEntity;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -76,7 +79,13 @@ public class UserServiceImpl implements UserService {
 //        List<ResponseOrder> orderList = orderListResponse.getBody();
 
         /* Using a FeignClient */
-        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
+        /* Feign exception handling */
+        List<ResponseOrder> orderList = null;
+        try {
+            orderServiceClient.getOrders(userId);
+        } catch (FeignException ex) {
+            log.error(ex.getMessage());
+        }
 
         userDto.setOrders(orderList);
         return userDto;
