@@ -25,7 +25,7 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "example-catalog-topic")
     public void updateQty(String kafkaMessage) {
-        log.info("Kafka Message : -> %s", kafkaMessage);
+        log.info("Kafka Message : " + kafkaMessage);
 
         Map<Object, Object> map = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
@@ -36,7 +36,9 @@ public class KafkaConsumer {
             e.printStackTrace();
         }
         CatalogEntity catalogEntity = catalogRepository.findByProductId((String) map.get("productId"));
-        if (catalogEntity != null) {
+        if (catalogEntity == null) {
+            log.error("productId not found : " + (String) map.get("productId"));
+        } else {
             catalogEntity.setStock(catalogEntity.getStock() - (Integer) map.get("qty"));
             catalogRepository.save(catalogEntity);
         }
