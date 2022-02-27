@@ -2,6 +2,7 @@ package me.kalpha.orderservice.controller;
 
 import me.kalpha.orderservice.dto.OrderDto;
 import me.kalpha.orderservice.jpa.OrderEntity;
+import me.kalpha.orderservice.messagequeue.KafkaProducer;
 import me.kalpha.orderservice.service.OrderService;
 import me.kalpha.orderservice.vo.RequestOrder;
 import me.kalpha.orderservice.vo.ResponseOrder;
@@ -20,11 +21,13 @@ import java.util.List;
 public class OrderController {
     private ModelMapper mapper;
     private OrderService orderService;
+    private KafkaProducer kafkaProducer;
 
     @Autowired
-    public OrderController(ModelMapper mapper, OrderService orderService) {
+    public OrderController(ModelMapper mapper, OrderService orderService, KafkaProducer kafkaProducer) {
         this.mapper = mapper;
         this.orderService = orderService;
+        this.kafkaProducer = kafkaProducer;
     }
 
     @GetMapping("/health_check")
@@ -37,7 +40,12 @@ public class OrderController {
                                                       @RequestBody RequestOrder requestOrder) {
         OrderDto orderDto = mapper.map(requestOrder, OrderDto.class);
         orderDto.setUserId(userId);
+
+        /* Save to DB */
         OrderDto createDto = orderService.createOrder(orderDto);
+        /* Send to Kafka */
+        kafkaProducer.send("example-catalog-topic", orderDto);
+        /* Response */
         ResponseOrder responseOrder = mapper.map(createDto, ResponseOrder.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseOrder);
