@@ -30,7 +30,8 @@ eureka:
 
 logging:
   level:
-    me.kalpha.userservice: DEBUG
+    me.kalpha.userservice.client: DEBUG
+
 
 #token:
 #  expiration_time: 864000000 #10 days

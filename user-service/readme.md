@@ -164,3 +164,32 @@ order-service:
 ```
 http://127.0.0.1:8000/actuatory/busrefresh
 ```
+## FeignClient 사용
+1. Dependency 추가
+```yaml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+2. Main Class
+```java
+@EnableFeignClients
+public class UserServiceApplication {    
+}
+```
+3. Interface 생성
+```java
+@FeignClient(name = "order-service")
+public interface OrderServiceClient {
+    @GetMapping("/order-service/{userId}/orders")
+    List<ResponseOrder> getOrders(@PathVariable String userId);
+}
+```
+4. Call API
+```java
+@Autowired
+private OrderServiceClient orderServiceClient;
+...
+List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
+```
