@@ -1,13 +1,22 @@
 1. install on Ubuntu
-```shell
+```sh
 $ sudo apt update
 $ sudo apt install mariadb-server
 $ sudo service mariadb status
+```
+2. 대소문자 구분하지 않기
+```sh
+$ sudo vi /etc/mysql/my.cnf
+[mysqld]
+lower_case_table_names = 1
+:wq
+$ sudo systemctl restart mariadb
+```
+3. root password 변경
+```sh
 $ mysql -u root
 Access denied for root
 $ sudo mysql -u root 
-```
-2. change password of root
 ```sql
 > use mysql;
 > select user, host, plugin from mysql.user;
@@ -17,7 +26,7 @@ $ sudo mysql -u root
 $ mysql -u root -p
 Enter password: test1234
 ```
-3. create tables users
+4. users 테이블 생성
 ```sql
 > create database mydb;
 > use mydb;
@@ -30,7 +39,7 @@ pwd varchar(20),
 created_at datetime default now(),
 );
 ```
-4. insert sample data;
+5. insert sample data;
 ```sql
 insert into users (user_id, name, pwd) values ('maru@naver.com', 'maru', 'pwd1');
 insert into users (user_id, name, pwd) values ('gildong@naver.com', 'gildong', 'pwd1');

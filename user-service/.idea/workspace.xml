@@ -5,27 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catalog-service/src/main/java/me/kalpha/catalogservice/messagequeue/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../catalog-service/src/main/java/me/kalpha/catalogservice/messagequeue/KafkaConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catalog-service/src/main/java/me/kalpha/catalogservice/messagequeue/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../catalog-service/src/main/java/me/kalpha/catalogservice/messagequeue/KafkaConsumerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../catalog-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../catalog-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/dto/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/dto/KafkaOrderDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/dto/Payload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/dto/Schema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/OrderProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../order-service/src/main/resources/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/resources/create.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/mariadb.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/mariadb.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-me.kalpha.userservice.UserServiceApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-me.kalpha.userservice.UserServiceApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/me.kalpha.userservice.UserServiceApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/me.kalpha.userservice.UserServiceApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
