@@ -193,3 +193,26 @@ private OrderServiceClient orderServiceClient;
 ...
 List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
 ```
+## Sleuth & Zipkin 적용
+1. Dependency
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+```
+2. Application.yml 설정
+```yaml
+spring:
+  zipkin:
+    based-url: http://localhost:9411
+    enabled: true
+  sleuth:
+    sampler:
+    probability: 1.0 # zipkin 서버에 100% 전달한다는 의미
+```
+3. 필요한 곳에 log 적용

@@ -96,11 +96,13 @@ public class UserServiceImpl implements UserService {
         /* Error exception handling by ErrorDecoder automatically. No need to inject FeiginErrorDecoder */
 //        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
 
+        log.info("Before call user-service microservice (getUserByUserId)");
         CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
         //getOrders가 에러나면 빈 ArrayList를 반환한다.
         List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId),
                 throwable -> new ArrayList<>());
         userDto.setOrders(orderList);
+        log.info("After call user-service microservice (getUserByUserId)");
         return userDto;
     }
 
