@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: order-service
+  zipkin:
+    based-url: http://localhost:9411
+    enabled: true
+  sleuth:
+    sampler:
+    probability: 1.0 # zipkin 서버에 100% 전달한다는 의미
   h2:
     console:
       enabled: true
