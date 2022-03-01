@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
     private OrderServiceClient orderServiceClient;
     private CircuitBreakerFactory circuitBreakerFactory;
 
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository
             , BCryptPasswordEncoder passwordEncoder

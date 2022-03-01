@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_resilience4j_resilience4j_circuitbreaker_1_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_resilience4j_resilience4j_core_1_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_resilience4j_resilience4j_timelimiter_1_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_vavr_vavr_0_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_vavr_vavr_match_0_10_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_circuitbreaker_resilience4j_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_circuitbreaker_resilience4j_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/circuitbreaker/Resilience4jConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/config/Resilience4jConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/config/Resilience4jConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/circuitbreaker/Resilience4jConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
