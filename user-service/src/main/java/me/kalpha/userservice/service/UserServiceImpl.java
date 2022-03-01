@@ -9,6 +9,8 @@ import me.kalpha.userservice.jpa.UserRepository;
 import me.kalpha.userservice.vo.ResponseOrder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private Environment env;
 //    private RestTemplate restTemplate;
     private OrderServiceClient orderServiceClient;
+    private CircuitBreakerFactory circuitBreakerFactory;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository
@@ -37,13 +40,15 @@ public class UserServiceImpl implements UserService {
             , ModelMapper mapper
             , Environment env
 //            , RestTemplate restTemplate
-            , OrderServiceClient orderServiceClient) {
+            , OrderServiceClient orderServiceClient
+            , CircuitBreakerFactory circuitBreakerFactory) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mapper = mapper;
         this.env = env;
 //        this.restTemplate = restTemplate;
         this.orderServiceClient = orderServiceClient;
+        this.circuitBreakerFactory = circuitBreakerFactory;
     }
 
 
@@ -88,7 +93,12 @@ public class UserServiceImpl implements UserService {
 //        }
 
         /* Error exception handling by ErrorDecoder automatically. No need to inject FeiginErrorDecoder */
-        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
+//        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
+
+        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+        //getOrders가 에러나면 빈 ArrayList를 반환한다.
+        List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId),
+                throwable -> new ArrayList<>());
         userDto.setOrders(orderList);
         return userDto;
     }
