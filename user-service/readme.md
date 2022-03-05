@@ -6,7 +6,7 @@ eureka:
   server:
     response-cache-update-interval-ms: 3000
 ```
-1. 유레카 클라이언트의 레지스트리를 받아오는 주기를 조정 (Client에 설정)
+2. 유레카 클라이언트의 레지스트리를 받아오는 주기를 조정 (Client에 설정)
 ```yml
 eureka:
   client:
@@ -29,7 +29,7 @@ eureka:
     <version>1.3.176</version>
 </dependency>
 ```
-1. Parent와 Dependency 맞추기 위해 Spring Cloud 버전2020.0.1로 변경한다.
+2. Parent와 Dependency 맞추기 위해 Spring Cloud 버전2020.0.1로 변경한다.
 ```xml
 	<properties>
 		<java.version>11</java.version>
@@ -43,11 +43,11 @@ eureka:
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private Date createdAt;
 ```
-1. Json에서 Null값 속성 제외 - Response객체에 사용한다.
+2. Json에서 Null값 속성 제외 - Response객체에 사용한다.
 ```java
 @JsonInclude(JsonInclude.Include.NON_NULL)
 ```
-1. RequestUser에서 NotNull을 사용하기 위한 dependency
+3. RequestUser에서 NotNull을 사용하기 위한 dependency
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -79,19 +79,19 @@ spring:
 </dependency>
 ```
 ```html
-http://localhost:8082/login
+http://localhost:18082/login
 ```
 ## Spring Cloud Config 추가
 1. Dependency 추가
 ```xml
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+</dependency>
 ```
 2. bootstrap.yml 추가
 > applicaiton.yml보다 먼저 loading된다.
@@ -99,10 +99,10 @@ http://localhost:8082/login
 spring:
   cloud:
     config:
-      uri: http://127.0.0.1:8888
+      uri: http://127.0.0.1:8088
       name: ecommerce
 ```
-> config-service의 application.yml에 등록된 "http://127.0.0.1:8888/ecommerce/default"에 등록된 정보를 읽어온다.<br>
+> config-service의 application.yml에 등록된 "http://127.0.0.1:8088/ecommerce/default"에 등록된 정보를 읽어온다.<br>
 > 이는 결국 git-local-rep/ecommerce.yml 읽게 된다.
 3. git-local-rep/ecommerce.yml 변경 후 재 적용 방법
     1. user-service 재기동
@@ -111,10 +111,10 @@ spring:
 ## git-local-rep/ecommerce.yml 변경 후 재 적용 (Actuator refresh)
 1. Dependency 추가
 ```xml
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-actuator</artifactId>
-		</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-actuator</artifactId>
+</dependency>
 ```
 2. Actuator endpoints API 추가
 > application.yml에 추가
@@ -154,7 +154,7 @@ public RestTemplate getRestTemplate() {
     return new RestTemplate();
 }
 ```
-2native-local-repo/user-service.yml
+2. native-local-repo/user-service.yml
 ```yaml
 order-service:
   # url: http://127.0.0.1:8000/order-service/%s/orders
@@ -193,6 +193,31 @@ private OrderServiceClient orderServiceClient;
 ...
 List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
 ```
+## CircuitBreaker 적용
+1. Dependency
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+</dependency>
+```
+2. Defaoult 적용
+```java
+CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+//getOrders가 에러나면 빈 ArrayList를 반환한다.
+List<ResponseOrder> orderList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId),
+        throwable -> new ArrayList<>());
+```
+3. CircuitBreakerFactory 커스터마이징
+```java
+@Configuration
+public class Resilience4jConfig {
+    @Bean
+    public Customizer<Resilience4JCircuitBreakerFactory> globalCustomConfig() {
+        // TODO
+    }
+}
+```
 ## Sleuth & Zipkin 적용
 1. Dependency
 ```xml
@@ -216,3 +241,43 @@ spring:
     probability: 1.0 # zipkin 서버에 100% 전달한다는 의미
 ```
 3. 필요한 곳에 log 적용
+```java
+@GetMapping("/{userId}/orders/{orderId}")
+public ResponseEntity<ResponseOrder> getOrder(@PathVariable("userId") String userId,
+                                              @PathVariable("orderId") String orderId) {
+    log.info("Before call order-service  microservice (getOrder)");
+    OrderDto orderDto = orderService.getOrderByOrderId(orderId);
+    // TODO
+    log.info("After call order-service  microservice (getOrder)");
+    return ResponseEntity.ok(result);
+}
+```
+```shell
+2022-03-01 20:56:20.164  INFO [order-service,efda907f96b9bbc8,efda907f96b9bbc8] 111754 --- [io-18084-exec-2] m.k.o.controller.OrderController         : Before call order-service microservice (getOrders)
+2022-03-01 20:56:38.944  INFO [order-service,cb2948cb9721e5c4,881dbc61ff033c29] 111754 --- [io-18084-exec-3] m.k.o.controller.OrderController         : After call order-service  microservice (getOrders)
+```
+> log에 자동적용된 trace id (efda907f96b9bbc8) 를 복사해서 zipkin 화면에서 조회 <br>
+> http://localhost:9411
+## Micrometer 적용
+1. Dependency
+```xml
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
+```
+2. Application.yml
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, metrics, prometheus
+```
+3. 사용자 정의 정보 표시
+```java
+@Timed(value = "user.status", longTask = true)
+public String status() {
+    // TODO
+}
+```

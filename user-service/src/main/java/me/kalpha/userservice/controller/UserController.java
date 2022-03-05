@@ -1,5 +1,6 @@
 package me.kalpha.userservice.controller;
 
+import io.micrometer.core.annotation.Timed;
 import me.kalpha.userservice.dto.UserDto;
 import me.kalpha.userservice.jpa.UserEntity;
 import me.kalpha.userservice.service.UserService;
@@ -35,11 +36,13 @@ public class UserController {
     }
 
     @GetMapping("/welcome")
+    @Timed(value = "user.welcome", longTask = true)
     public String welcome() {
         return greeting.getMessage();
     }
 
     @GetMapping("/health_check")
+    @Timed(value = "user.status", longTask = true)
     public String status() {
         return String.format("It's working in User Service"
                         + ", port(local.server.port) = %s, port(server.port) = %s"

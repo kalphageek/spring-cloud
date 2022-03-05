@@ -73,12 +73,12 @@ public class OrderController {
         });
 
         // Error 발생하는 경우 sleuth 테스트
-        try {
-            Thread.sleep(1000);
-            throw new Exception("장애발생");
-        } catch (InterruptedException e) {
-            log.warn(e.getMessage());
-        }
+//        try {
+//            Thread.sleep(1000);
+//            throw new Exception("장애발생");
+//        } catch (InterruptedException e) {
+//            log.warn(e.getMessage());
+//        }
 
         log.info("After call order-service microservice (getOrders)");
 
