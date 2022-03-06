@@ -1,4 +1,5 @@
 me/kalpha/userservice/vo/ResponseUser.class
+me/kalpha/userservice/config/Resilience4jConfig.class
 me/kalpha/userservice/vo/RequestUser.class
 me/kalpha/userservice/vo/RequestLogin.class
 me/kalpha/userservice/dto/UserDto.class

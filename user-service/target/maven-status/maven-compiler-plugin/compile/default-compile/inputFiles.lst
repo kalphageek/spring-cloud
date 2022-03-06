@@ -3,6 +3,7 @@
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/error/FeignErrorDecoder.java
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/vo/ResponseOrder.java
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/jpa/UserRepository.java
+/home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/config/Resilience4jConfig.java
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/service/UserService.java
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/dto/UserDto.java
 /home/jjd/workspace/spring-learning/spring-cloud/user-service/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java

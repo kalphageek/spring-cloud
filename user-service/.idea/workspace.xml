@@ -5,34 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_registry_prometheus_1_6_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_prometheus_simpleclient_0_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_prometheus_simpleclient_common_0_9_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/apache-kafka.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/confluent.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/connector.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/curl.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/jdbc_topic_data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/mariadb.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/zipkin.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_zipkin_reporter2_zipkin_reporter_brave_2_16_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_zipkin_reporter2_zipkin_sender_activemq_client_2_16_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_zipkin_reporter2_zipkin_sender_amqp_client_2_16_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_zipkin_reporter2_zipkin_sender_kafka_2_16_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_sleuth_zipkin_3_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_zipkin_2_2_8_RELEASE.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/apache-kafka.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/confluent.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/connector.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/connector예제/jdbc_topic_data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/curl.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/grafana.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/mariadb.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/micrometer.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/prometheus.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server-setup/zipkin.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/apache-kafka.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/confluent.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/connector.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/connector예제/jdbc_topic_data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/curl.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/grafana.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/mariadb.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/micrometer.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/prometheus.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../서버 설정.md/zipkin.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
