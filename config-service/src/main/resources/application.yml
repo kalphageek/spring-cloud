@@ -10,14 +10,14 @@ spring:
     username: admin
     password: admin
   profiles:
-    active: native
+    active: git
   cloud:
     config:
       server:
         native:
           search-locations: file:///home/jjd/workspace/spring-learning/native-file-repo
-#        git:
-#          uri: https://github.com/kalphageek/spring-cloud-config.git
+        git:
+          uri: https://github.com/kalphageek/spring-cloud-config
 #          uri: file:///c:/workspace/spring-learning/git-local-repo
 
 management:

@@ -18,7 +18,7 @@ alias topic-list='kafka-topics --list --bootstrap-server localhost:9092'
 alias topic-describe='kafka-topics --describe --bootstrap-server localhost:9092 --topic'
 alias producer='kafka-console-producer --bootstrap-server localhost:9092 --topic'
 alias consumer='kafka-console-consumer --bootstrap-server localhost:9092 --topic'
-alias connect-start='connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed.properties'
+alias connect-shttps://grafana.com/grafana/downloadtart='connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed.properties'
 :wq
 
 $ zookeeper-start # 2181

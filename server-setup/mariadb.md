@@ -3,6 +3,8 @@
 $ sudo apt update
 $ sudo apt install mariadb-server
 $ sudo service mariadb status
+# 설치위치
+$ ls /var/lib/mysql
 ```
 2. 대소문자 구분하지 않기
 ```sh

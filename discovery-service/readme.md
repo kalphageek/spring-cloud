@@ -12,3 +12,24 @@ eureka:
   client:
     registry-fetch-interval-seconds: 30    
 ```
+## Docker Image 생성
+1. Dockerfile
+```
+FROM openjdk:19-ea-11-slim
+VOLUME /tmp
+COPY target/discovery-service-0.0.1-SNAPSHOT.jar discovery-service.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "discovery-service.jar"]
+```
+2. Compile & Docker샐행 Command
+```sh
+$ cd discovery-service
+$ mvn clean compile package
+$ docker build -t kalphageek/discovery-service:1.0 .
+$ docker images
+$ docker push kalphageek/discovery-service:1.0
+# application.yml의 spring.cloud.config.uri 정보를 docker image이름으로 override한다.
+$ docker run -d -p 8761:8761 --network ecommerce-network \
+                -e "spring.cloud.config.uri=http://config-service:18088" \
+                --name discovery-service kalphageek/discovery-service:1.0
+```

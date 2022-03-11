@@ -53,6 +53,8 @@ spring:
           password: [password]
 ```
 ## 대칭키를 이용한 암호화
+> Bootstrap이 자동으로 '{cipher}'로 시작하는 yaml파일의 text를 decrypt 한다.
+> 이 때 bootstrap.yml에 있는 key를 사용한다 
 1. Dependency 추가
 ```xml
 <dependency>
@@ -75,9 +77,9 @@ password
 [return value]
 01dc766ab8cdb62c2dc1b30853609965a522962f1fe10d6ad2ad8195fca2cffe
 ```
-3. Decrypt API 호출
+3. Decrypt API 호출 테스
 ```
-[POST] http://localhost:8088/encrypt
+[POST] http://localhost:8088/decrypt
 [body > row > text]
 [request body]
 01dc766ab8cdb62c2dc1b30853609965a522962f1fe10d6ad2ad8195fca2cffe
@@ -94,14 +96,23 @@ spring:
     username: sa
     password: '{cipher}38e40f741d0d517c386a29bcd575bac6394a2a4eb4983b9292c770b147a30e92'
 ```
-5. 확인
+5. Config server의 profile 확인
 ```html
 http://localhost:8088/user-service/default
 ```
 
 ## 비대칭키를 이용한 암호화
-1. 비대칭키 생성
+> JDK의 keytool을 활용해서 private key와 public key 생성한다. 생성된 private key를 이용해 encrypt 하면 public key를 이용해 decrypt한다 (또는 그 반대)
+1. Dependency 추가
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+</dependency>
+```
+2. 비대칭키 생성
 ```shell
+# key file 보관할 directory 생성
 $cd ~/workspace/spring-learning/spring-cloud
 $mkdir keystore
 $cd keystore 
@@ -114,11 +125,11 @@ $ls -al
 $keytool -list -keystore apiEncryptionKey.jks [-v]
 password> test123
 
-#인증서 파일 생성
+#인증서 파일 생성 : 여기서는 사용 안함
 $keytool -export -alias apiEncryptionKey -keystore apiEncryptionKey.jks -rfc -file trustServer.cer
 $ls -al
 
-#public key 파일 생성
+#public key 파일 생성 : 여기서는 사용 안함
 $keytool -import -alias trustServer -file trustServer.cer -keystore publicKey.jks
 password :> test1234
 certificate?> yes
@@ -130,22 +141,38 @@ apiEncryptionKey.jks  #private key
 publicKey.jks         #public key
 trustServer.cer       #인증서
 ```
-2. Dependency 추가
-```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-bootstrap</artifactId>
-</dependency>
-```
-3. private key 설
+3. private key 설정
 * bootstrap.yml
 ```yaml
 encrypt:
-  location: file://${user.name}/workspace/spring-learning/spring-cloud/key-store/apiEncryptKey.jks
-  alias: apiEncryptKey
+  location: file:///home/jjd/workspace/spring-learning/spring-cloud/keystore/apiEncryptionKey.jks
+  alias: apiEncryptionKey
   password: test1234
 ```
 4. Encrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
 5. Decrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
 6. 활용 -> ## 대칭키를 이용한 암호화와 동일
 7. 확인 -> ## 대칭키를 이용한 암호화와 동일
+
+## Docker Image 생성
+1. Dockerfile
+```
+FROM openjdk:19-ea-11-slim
+VOLUME /tmp
+COPY target/config-service-0.0.1-SNAPSHOT.jar user-service.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "config-service.jar"]
+```
+2. Compile & Docker샐행 Command
+```sh
+$ cd config-service
+$ mvn clean compile package
+$ docker build -t kalphageek/config-service:1.0 .
+$ docker images
+$ docker push kalphageek/discovery-service:1.0
+# application.yml의 rabbitmq host정보를 rabbitmq image이름으로 override한다.
+$ docker run -d -p 18088:18088 --network ecommerce-network \
+                -e "spring.rabbitmq.host=rabbitmq" \
+                -e "spring.profiles.acitve=default" \
+                --name config-service kalphageek/config-service:1.0
+```

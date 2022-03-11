@@ -83,3 +83,26 @@ spring:
 ```
 http://localhost:8000/actuator/busrefresh
 ```
+## Docker Image 생성
+1. Dockerfile
+```
+FROM openjdk:19-ea-11-slim
+VOLUME /tmp
+COPY target/apigateway-service-0.0.1-SNAPSHOT.jar apigateway-service.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "apigateway-service.jar"]
+```
+2. Compile & Docker샐행 Command
+```sh
+$ cd apigateway-service
+$ mvn clean compile package
+$ docker build -t kalphageek/apigateway-service:1.0 .
+$ docker images
+$ docker push kalphageek/apigateway-service:1.0
+# application.yml/bootstrap.yml의 uri/host 정보를 docker image이름으로 override한다.
+$ docker run -d -p 8000:8000 --network ecommerce-network \
+                -e "spring.cloud.config.uri=http://config-service:18088" \
+                -e "eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka" \
+                -e "spring.rabbitmq.host=rabbitmq" \
+                --name apigateway-service kalphageek/apigateway-service:1.0
+```
