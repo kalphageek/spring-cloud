@@ -281,3 +281,24 @@ public String status() {
     // TODO
 }
 ```
+## Docker Image 생성
+1. Dockerfile
+```
+FROM openjdk:19-ea-11-slim
+VOLUME /tmp
+COPY target/user-service-0.0.1-SNAPSHOT.jar user-service.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "user-service.jar"]
+```
+2. Compile & Docker샐행 Command
+```sh
+$ cd user-service
+$ mvn clean compile package
+$ docker build -t kalphageek/user-service:1.0 .
+$ docker images
+# application.yml의 rabbitmq host정보를 rabbitmq image이름으로 override한다.
+$ docker run -d -p 18082:18082 --network ecommerce-network \
+                -e "spring.rabbitmq.host=rabbitmq" \
+                -e "spring.profiles.acitve=default" \
+                --name user-service kalphageek/user-service:1.0
+```

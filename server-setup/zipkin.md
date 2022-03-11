@@ -7,10 +7,12 @@
 * Span
 	- Span ID 하위의 Tracing ID	
 
-2. Downsload and install
+2. Download and run
 ```sh
 $ curl -sSL https://zipkin.io/quickstart.sh | bash -s
 $ java -jar zipkin.jar
 ```
 3. Web ui
-> http://localhost:9411
+```
+http://localhost:9411
+```

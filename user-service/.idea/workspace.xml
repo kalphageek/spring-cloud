@@ -5,30 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../server-setup/apache-kafka.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/confluent.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/connector.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/connector예제/jdbc_topic_data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/curl.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/grafana.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/mariadb.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/micrometer.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/prometheus.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server-setup/zipkin.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../apigateway-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../config-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../config-service/apiEncryptionKey.jks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../discovery-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apigateway-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-service/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../config-service/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../config-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../config-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discovery-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../discovery-service/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discovery-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../discovery-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/confluent.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/confluent.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/docker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/mariadb.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/mariadb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/zipkin.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/zipkin.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-me.kalpha.userservice.UserServiceApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-me.kalpha.userservice.UserServiceApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/me.kalpha.userservice.UserServiceApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/me.kalpha.userservice.UserServiceApplicationTests.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/user-service-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/apache-kafka.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/confluent.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/connector.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/connector예제/jdbc_topic_data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/curl.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/grafana.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/mariadb.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/micrometer.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/prometheus.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../서버 설정.md/zipkin.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +104,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../apigateway-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../order-service" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
