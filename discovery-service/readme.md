@@ -30,6 +30,6 @@ $ docker images
 $ docker push kalphageek/discovery-service:1.0
 # application.yml의 spring.cloud.config.uri 정보를 docker image이름으로 override한다.
 $ docker run -d -p 8761:8761 --network ecommerce-network \
-                -e "spring.cloud.config.uri=http://config-service:18088" \
+                -e "spring.cloud.config.uri=http://config-service:8888" \
                 --name discovery-service kalphageek/discovery-service:1.0
 ```
