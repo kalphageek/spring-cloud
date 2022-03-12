@@ -101,7 +101,7 @@ $ docker images
 $ docker push kalphageek/apigateway-service:1.0
 # application.yml/bootstrap.yml의 uri/host 정보를 docker image이름으로 override한다.
 $ docker run -d -p 8000:8000 --network ecommerce-network \
-                -e "spring.cloud.config.uri=http://config-service:18088" \
+                -e "spring.cloud.config.uri=http://config-service:8888" \
                 -e "eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka" \
                 -e "spring.rabbitmq.host=rabbitmq" \
                 --name apigateway-service kalphageek/apigateway-service:1.0

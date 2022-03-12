@@ -171,7 +171,7 @@ $ docker build -t kalphageek/config-service:1.0 .
 $ docker images
 $ docker push kalphageek/discovery-service:1.0
 # application.yml의 rabbitmq host정보를 rabbitmq image이름으로 override한다.
-$ docker run -d -p 18088:18088 --network ecommerce-network \
+$ docker run -d -p 8888:8888 --network ecommerce-network \
                 -e "spring.rabbitmq.host=rabbitmq" \
                 -e "spring.profiles.acitve=default" \
                 --name config-service kalphageek/config-service:1.0

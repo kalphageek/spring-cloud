@@ -296,9 +296,15 @@ $ cd user-service
 $ mvn clean compile package
 $ docker build -t kalphageek/user-service:1.0 .
 $ docker images
+# apigateway를 통해 접속하기 때문에 port forwading을 지정할 필요 없다.
 # application.yml의 rabbitmq host정보를 rabbitmq image이름으로 override한다.
-$ docker run -d -p 18082:18082 --network ecommerce-network \
-                -e "spring.rabbitmq.host=rabbitmq" \
-                -e "spring.profiles.acitve=default" \
-                --name user-service kalphageek/user-service:1.0
+$ docker run -d --name user-service --network ecommerce-network \
+-e "spring.cloud.config.uri=http://config-service:8888" \
+-e "spring.rabbitmq.host=rabbitmq" \
+-e "spring.zipkin.base-url=http://zipkin:9411" \
+-e "eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka" \
+-e "logging.file=/api-logs/users-ws.log" \
+kalphageek/user-service:1.0
+$ docker push kalphageek/user-service:1.0
+$ docker logs -f user-service
 ```

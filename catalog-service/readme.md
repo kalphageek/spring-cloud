@@ -47,3 +47,28 @@ spring:
   jpa:
     generate-ddl: true
 ```
+
+## Docker Image 생성
+1. KafkaPConfumerConfig에 정의된 broker의 ip를 docker ip로 변경한다.
+2. Dockerfile
+```
+FROM openjdk:19-ea-11-slim
+VOLUME /tmp
+COPY target/catalog-service-0.0.1-SNAPSHOT.jar catalog-service.jar
+ENTRYPOINT ["java"]
+CMD ["-jar", "catalog-service.jar"]
+```
+3. Compile & Docker샐행 Command
+```sh
+$ cd catalog-service
+$ mvn clean compile package -DskipTests=true
+$ docker build -t kalphageek/catalog-service:1.0 .
+$ docker images
+# application.yml의 rabbitmq host정보를 rabbitmq image이름으로 override한다.
+$ docker run -d --name catalog-service --network ecommerce-network \
+-e "eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka" \
+-e "logging.file=/api-logs/catalog-ws.log" \
+kalphageek/catalog-service:1.0
+$ docker push kalphageek/catalog-service:1.0
+$ docker logs -f catalog-service
+```
