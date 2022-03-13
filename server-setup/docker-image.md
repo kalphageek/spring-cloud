@@ -13,11 +13,12 @@ $ docker run -d --name mariadb --network ecommerce-network \
 -p 3306:3306 \
 -e MYSQL_ROOT_PASSWORD=test1234 \
 -e MYSQL_DATABASE=mydb 
-mariadb:10.4
+mariadb:10.7.3
 ``` 
 ## Kafka
 ```sh
 $ docker-compose -f docker-compose-single-broker.yml up -d
+$ docker-compose -f docker-compose-kafka-7.0.yml up -d
 ```
 ## Zipkin
 ```sh
