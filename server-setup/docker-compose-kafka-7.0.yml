@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.1'
 
 services:
   zookeeper:
@@ -67,12 +67,10 @@ services:
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
-      # CONNECT_PLUGIN_PATH: '/usr/share/java, /usr/share/java/confluentinc-kafka-connect-jdbc-10.3.3'
       CONNECT_PLUGIN_PATH: '/usr/share/java'
     volumes:
       - /home/jjd/workspace/connector/confluentinc-kafka-connect-jdbc-10.3.3/lib:/usr/share/java/confluentinc-kafka-connect-jdbc-10.3.3
-      - /home/jjd/workspace/connector/mariadb-java-client-3.0.3/mariadb-java-client-3.0.3.jar:/usr/share/java/kafka/mariadb-java-client-3.0.3.jar
-      # - ./target/components/packages/you-kafka-connect-sample-0.1.0/you-kafka-connect-sample-0.1.0/lib:/usr/share/java/kafka-connect-sample
+      - /home/jjd/.m2/repository/org/mariadb/jdbc/mariadb-java-client/2.7.1:/usr/share/java/mariadb-java-client-2.7.1
     networks:
       my-network:
         ipv4_address: 172.18.0.111

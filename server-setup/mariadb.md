@@ -16,9 +16,9 @@ $ sudo systemctl restart mariadb
 ```
 3. root password 변경
 ```sh
-$ mysql -u root
+$ mysql -u root -p
 Access denied for root
-$ sudo mysql -u root 
+$ sudo mysql -u root -p
 ```sql
 > use mysql;
 > select user, host, plugin from mysql.user;

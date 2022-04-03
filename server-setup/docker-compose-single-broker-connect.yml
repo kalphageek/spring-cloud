@@ -67,8 +67,11 @@ services:
       CONNECT_INTERNAL_KEY_CONVERTER_SCHEMAS_ENABLE: 'false'
       CONNECT_INTERNAL_VALUE_CONVERTER_SCHEMAS_ENABLE: 'false'
       CONNECT_LOG4J_LOGGERS: 'org.reflections=ERROR'
+      CONNECT_PLUGIN_PATH: '/usr/share/java'
     volumes:
       - './books.xsd:/books.xsd:ro'
+      - /home/jjd/workspace/connector/confluentinc-kafka-connect-jdbc-10.3.3/lib:/usr/share/java/confluentinc-kafka-connect-jdbc-10.3.3
+      - /home/jjd/.m2/repository/org/mariadb/jdbc/mariadb-java-client/2.7.1/mariadb-java-client-2.7.1.jar:/usr/share/java/mariadb-java-client-2.7.1.jar
     networks:
       my-network:
         ipv4_address: 172.18.0.121
