@@ -36,6 +36,41 @@ services:
       my-network:
         ipv4_address: 172.18.0.101
 
+  # kafka-rest:
+  #   image: confluentinc/cp-kafka-rest:7.0.0
+  #   hostname: kafka-rest
+  #   container_name: kafka-rest
+  #   depends_on:
+  #     - kafka
+  #   ports:
+  #     - 8082:8082
+  #   environment:
+  #     KAFKA_REST_ZOOKEEPER_CONNECT: "zookeeper:2181"
+  #     KAFKA_REST_LISTENERS: "http://kafka-rest:8082"
+  #     KAFKA_REST_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+  #     KAFKA_REST_HOST_NAME: kafka-rest
+  #     KAFKA_REST_DEBUG: "true"
+  #   networks:
+  #     my-network:
+  #       ipv4_address: 172.18.0.131
+
+  # schema-registry:
+  #   image: confluentinc/cp-schema-registry:7.0.0
+  #   hostname: schema-registry
+  #   container_name: schema-registry
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #   ports:
+  #     - '8081:8081'
+  #   environment:
+  #     SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+  #     SCHEMA_REGISTRY_HOST_NAME: schema-registry
+  #     SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
+  #   networks:
+  #     my-network:
+  #       ipv4_address: 172.18.0.121
+
   connect:
     image: confluentinc/cp-kafka-connect-base:7.0.0
     hostname: connect
@@ -67,10 +102,11 @@ services:
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
-      CONNECT_PLUGIN_PATH: '/usr/share/java'
+      CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/java/confluentinc-kafka-connect-jdbc-10.3.3'
     volumes:
       - /home/jjd/workspace/connector/confluentinc-kafka-connect-jdbc-10.3.3/lib:/usr/share/java/confluentinc-kafka-connect-jdbc-10.3.3
-      - /home/jjd/.m2/repository/org/mariadb/jdbc/mariadb-java-client/2.7.1:/usr/share/java/mariadb-java-client-2.7.1
+      # /usr/share/java/kafka 아래에 위치해야 함
+      - /home/jjd/.m2/repository/org/mariadb/jdbc/mariadb-java-client/2.7.1/mariadb-java-client-2.7.1.jar:/usr/share/java/kafka/mariadb-java-client-2.7.1.jar
     networks:
       my-network:
         ipv4_address: 172.18.0.111
