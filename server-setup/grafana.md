@@ -2,6 +2,7 @@
 > 데이터 시각화, 모니터링 및 분석. 시계열 데이터 시각화
 
 ### 2. 설치
+https://grafana.com/grafana/download
 ```shell
 $ cd Downloads
 $ wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.4.2.linux-amd64.tar.gz

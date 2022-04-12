@@ -39,3 +39,7 @@ $ docker run -d --name grafana --network ecommerce-network \
 -p 3000:3000 \
 grafana/grafana
 ```
+## Docker-compose
+```sh
+$ docker-compose -f docker-compose-kafka-7.0.yml up -d
+```

@@ -1,3 +1,8 @@
+## H2 Mariadb 접속
+* Driver Class : org.mariadb.jdbc.Driver
+* URL: jdbc:mysql://localhost:3306/mydb
+* User : root
+* Password : test1234
 ## Kafka sink connector for the orders table
 1. db sink connect
 ```json
@@ -66,7 +71,7 @@ $ docker run -d --name order-service --network ecommerce-network \
 -e "spring.zipkin.base-url=http://zipkin:9411" \
 -e "eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka" \
 -e "logging.file=/api-logs/order-ws.log" \
-kalphageek/order-service:1.0
+kalphageek/order-service:1.0.1
 
 # 도커이미지 스냅샷 생성
 $ docker commit -p 225d8afd1b13  kalphageek/order-service-2:1.0 

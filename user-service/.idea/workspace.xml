@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../order-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/confluent.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/confluent.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-kafka-7.0.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/docker-compose-kafka-7.0.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-single-broker-connect.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-single-broker.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/docker-image.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/docker-image.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server-setup/grafana.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/grafana.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
