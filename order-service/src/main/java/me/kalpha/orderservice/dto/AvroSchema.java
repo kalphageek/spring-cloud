@@ -7,9 +7,8 @@ import java.util.List;
 
 @Data
 @Builder
-public class Schema {
+public class AvroSchema {
     private String type;
-    private List<Field> fields;
-    private boolean optional;
     private String name;
+    private List<Field> fields;
 }

@@ -96,3 +96,66 @@ exit
 $ docker push kalphageek/order-service:1.0
 $ docker logs -f order-service
 ```
+## Schema Registry + Avro Value
+1. pom.xml
+```xml
+<project>
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<url>http://packages.confluent.io/maven/</url>
+		</repository>
+	</repositories>
+  
+    <dependencies>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+    </dependencies>
+  
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-schema-registry-maven-plugin</artifactId>
+                <version>7.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+2. AvroSchema 구조
+```json
+{
+  "type" : record,
+  "name" : orders,
+  "fields" : [
+    {
+      "name" : order_id,
+      "type" : string
+    },
+    {
+      "name" : user_id,
+      "type" : string
+    },
+    {
+      "name" : product_id,
+      "type" : string
+    },
+    {
+      "name" : qty,
+      "type" : int
+    },
+    {
+      "name" : unit_price,
+      "type" : int
+    },
+    {
+      "name" : total_amount,
+      "type" : int
+    }
+  ]
+}
+```

@@ -3,7 +3,6 @@ package me.kalpha.orderservice.controller;
 import lombok.extern.slf4j.Slf4j;
 import me.kalpha.orderservice.dto.OrderDto;
 import me.kalpha.orderservice.jpa.OrderEntity;
-import me.kalpha.orderservice.messagequeue.KafkaProducer;
 import me.kalpha.orderservice.messagequeue.OrderProducer;
 import me.kalpha.orderservice.service.OrderService;
 import me.kalpha.orderservice.vo.RequestOrder;
@@ -24,14 +23,12 @@ import java.util.List;
 public class OrderController {
     private ModelMapper mapper;
     private OrderService orderService;
-    private KafkaProducer kafkaProducer;
     private OrderProducer orderProducer;
 
     @Autowired
-    public OrderController(ModelMapper mapper, OrderService orderService, KafkaProducer kafkaProducer, OrderProducer orderProducer) {
+    public OrderController(ModelMapper mapper, OrderService orderService, OrderProducer orderProducer) {
         this.mapper = mapper;
         this.orderService = orderService;
-        this.kafkaProducer = kafkaProducer;
         this.orderProducer = orderProducer;
     }
 
