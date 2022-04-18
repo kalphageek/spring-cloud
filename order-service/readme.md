@@ -159,3 +159,24 @@ $ docker logs -f order-service
   ]
 }
 ```
+3. Jdbc sink connector
+```json
+{
+    "name" : "orders-sink-connect",
+    "config" : {
+        "connector.class" : "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "connection.url" : "jdbc:mysql://localhost:3306/mydb",
+        "connection.user" : "root",
+        "connection.password" : "test1234",
+        "key.converter":"org.apache.kafka.connect.storage.StringConverter",
+        "key.converter.schema.enable":"false",
+        "value.converter":"io.confluent.connect.avro.AvroConverter",
+        "value.converter.schema.registry.url":"http://127.0.0.1:8081",
+        "auto.create" : "true",
+        "auto.evolve" : "true",
+        "delete.enabled" : "false",
+        "topics" : "orders",
+        "tasks.max" : "1"
+    }
+}
+```
