@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392dd18f-70c6-4183-9b6e-2f0f854a3f6f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../order-service/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../order-service/src/main/java/me/kalpha/orderservice/messagequeue/KafkaProducerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/confluent.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/confluent.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-kafka-7.0.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/docker-compose-kafka-7.0.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-single-broker-connect.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/docker-compose-single-broker.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/docker-image.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/docker-image.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-setup/grafana.md" beforeDir="false" afterPath="$PROJECT_DIR$/../server-setup/grafana.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/denied.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/user_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/security/WebSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/security/WebSecurity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/security/WebSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/security/WebSecurity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/kalpha/userservice/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +33,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -40,14 +49,14 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/UserServiceApplication.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/dto/UserDto.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/UserServiceApplication.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/client/OrderServiceClient.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/controller/UserController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/resources/application.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/dto/UserDto.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/error/FeignErrorDecoder.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/service/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/application.yml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -87,15 +96,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="me.kalpha.userservice.vo" />
@@ -152,6 +157,15 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/kalpha/userservice/security/AuthenticationFilter.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="env.getProperty(&quot;token.expiration_time&quot;)" language="JAVA" />
@@ -165,7 +179,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/user_service$UserServiceApplication.ic" NAME="UserServiceApplication Coverage Results" MODIFIED="1643987102462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/user_service$UserServiceApplication.ic" NAME="UserServiceApplication Coverage Results" MODIFIED="1651307674312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>me.kalpha.userservice.*</FILTER>
     </SUITE>
   </component>

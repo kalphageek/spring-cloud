@@ -5,14 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     private UserService userService;
     private BCryptPasswordEncoder passwordEncoder;
@@ -45,17 +48,37 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
          * rest api에서 client는 권한이 필요한 요청을 하기 위해서는 요청에 필요한 인증 정보를(OAuth2, jwt토큰 등)을 포함시켜야 한다.
          * 따라서 서버에 인증정보를 저장하지 않기 때문에 굳이 불필요한 csrf 코드들을 작성할 필요가 없다.
          */
-        http.csrf().disable();
-//        http.authorizeRequests().antMatchers("/users/**").permitAll();
+
+        http.authorizeRequests()
+                .antMatchers("/member/**").authenticated()
+                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/**").permitAll();
+
+//        http.csrf().disable();
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
-        http.authorizeRequests().antMatchers("/**")
-                .permitAll()
-//                .hasIpAddress("127.0.0.1")
-                .and()
-                .addFilter(getAuthenticationFilter()); // 모든 요청에 대해 필터작업 요청
+//        http.authorizeRequests().antMatchers("/**")
+//                .permitAll()
+//                .and()
+//                .addFilter(getAuthenticationFilter()); // 모든 요청에 대해 필터작업 요청
+
+        http.formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .passwordParameter("pwd")
+                .defaultSuccessUrl("/")
+                .permitAll();
+
+        http.logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true);
+
+        http.exceptionHandling()
+                .accessDeniedPage("/denied");
 
         //h2-console이 정상적으로 display되도록 허용한다.
         http.headers().frameOptions().disable();
+
     }
 
     /**
@@ -78,5 +101,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
+    }
+
+    @Override
+    public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**");
     }
 }

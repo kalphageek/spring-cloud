@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -76,26 +78,6 @@ public class UserServiceImpl implements UserService {
         }
         UserDto userDto = mapper.map(userEntity, UserDto.class);
 
-        /* Using a Resttemplate */
-//        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
-//        ResponseEntity<List<ResponseOrder>> orderListResponse =
-//                restTemplate.exchange(orderUrl, HttpMethod.GET, null,
-//                                    new ParameterizedTypeReference<List<ResponseOrder>>() {
-//                });
-//        List<ResponseOrder> orderList = orderListResponse.getBody();
-
-        /* Using a FeignClient */
-//        /* Feign exception handling */
-//        List<ResponseOrder> orderList = null;
-//        try {
-//            orderServiceClient.getOrders(userId);
-//        } catch (FeignException ex) {
-//            log.error(ex.getMessage());
-//        }
-
-        /* Error exception handling by ErrorDecoder automatically. No need to inject FeiginErrorDecoder */
-//        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
-
         log.info("Before call user-service microservice (getUserByUserId)");
         CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
         //getOrders가 에러나면 빈 ArrayList를 반환한다.
@@ -128,8 +110,11 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException(username);
         }
 
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+
         return new User(userEntity.getEmail(), userEntity.getEncryptedPwd(),
                 true, true, true, true,
-                new ArrayList<>());
+                authorities);
     }
 }

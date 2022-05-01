@@ -62,6 +62,8 @@ spring:
     generate-ddl: true
 ```
 ## Spring Security
+* Web UI 적용
+  1. https://bamdule.tistory.com/53
 * Login 순서
     1. /login 호출
     2. AuthenticationFilter.attemptAuthentication 호출
