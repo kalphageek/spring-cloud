@@ -1,0 +1,53 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: login-service
+  zipkin:
+    based-url: http://localhost:9411
+    enabled: true
+  sleuth:
+    sampler:
+    probability: 1.0 # zipkin 서버에 100% 전달한다는 의미
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:testdb
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    #instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    registry-fetch-interval-seconds: 30
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka
+
+logging:
+  level:
+    me.kalpha.userservice.client: DEBUG
+
+
+#token:
+#  expiration_time: 864000000 #10 days
+#  secret: user_token
+
+greeting:
+  message: "Welcome to simple e-commerce !"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh, info, metrics, prometheus

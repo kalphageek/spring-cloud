@@ -75,6 +75,41 @@ spring:
             - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
             - RewritePath=/user-service/(?<segment>.*), /$\{segment} #/user-service/health_check -> /health_check로 변환해준다.
             - AuthorizationHeaderFilter
+
+        - id: login-service
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path=/login-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/login-service/(?<segment>.*), /$\{segment} #/login-service/login -> /users로 변환해준다.
+        - id: login-service
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path=/login-service/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/login-service/(?<segment>.*), /$\{segment} #/login-service/users -> /users로 변환해준다.
+        - id: login-service
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path=/login-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/login-service/(?<segment>.*), /$\{segment} #/login-service/actuator -> /actuator로 변환해준다.
+        - id: login-service
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path=/login-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie #매번 Request Header정보 초기화
+            - RewritePath=/login-service/(?<segment>.*), /$\{segment} #/login-service/health_check -> /health_check로 변환해준다.
+            - AuthorizationHeaderFilter
+
         - id: first-service
           uri: lb://MY-FIRST-SERVICE
           predicates:
