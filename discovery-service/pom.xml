@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>me.kalpha</groupId>
 	<artifactId>discovery-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>discovery-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -47,6 +47,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.5.8</version>
+				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-image</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
