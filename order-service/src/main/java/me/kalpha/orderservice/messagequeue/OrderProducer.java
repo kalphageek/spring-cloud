@@ -22,7 +22,7 @@ import java.util.UUID;
 public class OrderProducer {
     private KafkaTemplate<String, GenericRecord> kafkaTemplate;
     List<Field> fields = Arrays.asList(new Field("order_id", "string"),
-            new  Field(  "user_id", "string"),
+            new  Field( "user_id", "string"),
             new  Field( "product_id", "string"),
             new  Field( "qty", "int"),
             new  Field( "unit_price", "int"),

@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * KafkaConsumerConfig을 사용하는 Consumer를 등록한다
+ */
 @Service
 @Slf4j
 public class KafkaConsumer {

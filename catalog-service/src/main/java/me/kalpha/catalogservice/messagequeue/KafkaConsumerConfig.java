@@ -26,6 +26,10 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(properties);
     }
 
+    /**
+     * Topic의 변경사항을 Listen 하는 Bean.
+     * @return
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory
